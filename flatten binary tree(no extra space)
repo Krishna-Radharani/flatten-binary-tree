@@ -1,0 +1,18 @@
+lass Solution {
+public:
+    void function(TreeNode*root,TreeNode* &temp){
+         if(root==NULL){
+            return ;
+        }
+        function(root->right,temp);
+        function(root->left,temp);
+        root->left=NULL;
+        root->right=temp;
+        temp=root;
+
+    }
+    void flatten(TreeNode* root) {
+        TreeNode*temp=NULL;;
+        function(root,temp);
+        }
+};
