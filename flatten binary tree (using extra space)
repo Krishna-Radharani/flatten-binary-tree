@@ -1,0 +1,28 @@
+class Solution {
+public:
+    void preorder(TreeNode*root,vector<int>&ans){
+        if(root==NULL){
+            return ;
+        }
+        ans.push_back(root->val);
+        preorder(root->left,ans);
+        preorder(root->right,ans);
+
+    }
+    void flatten(TreeNode* root) {
+        if(root==nullptr){
+            return;
+        }
+        vector<int>ans;
+        preorder(root,ans);
+        TreeNode*current=root;
+        for(int i=1;i<ans.size();i++){
+            TreeNode*temp=new TreeNode(ans[i]);
+            current->right=temp;
+            current->left=NULL;
+            current=current->right;
+        }
+        current->right=nullptr;
+        
+    }
+};
